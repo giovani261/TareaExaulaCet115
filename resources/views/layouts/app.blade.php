@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <title>{{ config('app.name', 'Laravel') }}</title>
+
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
+
+    <!-- Fonts -->
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+
+    <!-- Styles -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/estilos3.css') }}" rel="stylesheet" />
+    <!-- Fontawesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    @livewireStyles
+</head>
+<body>
+    <div id="app">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+            <div class="container">
+                <a class="navbar-brand" href="{{ url('/') }}">
+                    {{ config('app.name') }}
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Categorias
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                        </div>
+                    </li>
+                </ul>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <!-- Left Side Of Navbar -->
+                    <ul class="navbar-nav mr-auto">
+
+                    </ul>
+
+                    <!-- Right Side Of Navbar -->
+                    <ul class="navbar-nav ml-auto">
+                        <!-- Authentication Links -->
+
+                        <li class="nav-item">
+                            <livewire:cart />
+                        </li>
+                        @guest
+                            @if (Route::has('login'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                </li>
+                            @endif
+
+                            @if (Route::has('register'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                </li>
+                            @endif
+                        @else
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->name }}
+                                </a>
+
+
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    @role('administrador')
+                                        <a class="dropdown-item" href="{{ url('/create') }}">
+                                            Crear Producto
+                                        </a>
+                                    @endrole
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                                </div>
+                            </li>
+                        @endguest
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <main class="py-4">
+            @yield('content')
+        </main>
+    </div>
+    @livewireScripts
+    @stack('scripts')
+    <footer id="footer" class="midnight-blue">
+            <style>
+                .col h4{
+                    color: white;
+                }
+                p{
+                    color: white;
+                    font-size: 85%;
+                }               
+                .fblink{
+                    color: white;
+                    font-size: 85%;                          
+                }
+                .twitterlink{
+                    color: white;
+                    font-size: 85%;                                             
+                }
+            </style>
+            <br>
+            <center>
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <div>
+                                <h5 style="color: white;">Contactos</h5>        
+                                <a href="https://twitter.com/" class="twitterlink" target="_blank">
+                                    <i class="fa-brands fa-twitter twittericon"></i>
+                                    <br>
+                                    @asdfgg
+                                </a>
+                            </div>
+                            <br>
+                            <span class="fbspan">   
+                                    <i class="fa-brands fa-facebook fbicon"></i>
+                                    <br>
+                                    <a href="https://www.facebook.com/" class="fblink" target="_blank" style="font-size: 12px;">/asdfdf</a>
+                                    <br>
+                                    <a href="https://www.facebook.com/" class="fblink" target="_blank" style="font-size: 12px;">/asfdgfg</a>
+                            </span>
+                            <br>
+                        </div>
+                        <div class="col">
+                            <h5 style="color: white;">Empresa</h5>
+                            <p style="font-size: 12px;"><i class="fa-solid fa-map-location-dot"></i> 23 Av. Nte. # 1318. Col. Medica. Contiguo Hospital PNC</p>
+                            <p style="font-size: 12px;"><i class="fa-solid fa-phone"></i> TEL.: 2519-3909</p>
+                            <p style="font-size: 12px;"><i class="fa-solid fa-window-maximize"></i> https://</p>
+                            <p style="font-size: 12px;"><i class="fa-solid fa-envelope"></i> correo</p>
+                        </div>
+                        <div class="col">
+                            <h5 style="color: white;">Marcas</h5>
+                            <a href="http://adidas.com/" target="_blank"><img src="{{ asset('imgs/m1.png') }}" alt="Marca 1" class="img-thumbnail asc1" style="height: 80px; width: 80px;"></a>
+                            <a href="https://nike.com/" target="_blank"><img src="{{ asset('imgs/m2.jpg') }}" alt="Marca 2" class="img-thumbnail asc2" style="height: 80px; width: 80px;"></a>
+                            <a href="https://puma.com" target="_blank"><img src="{{ asset('imgs/m3.png') }}" alt="Marca 3" class="img-thumbnail asc3" style="height: 80px; width: 80px;"></a>
+                        </div>
+                    </div>
+                </div>
+            </center>
+       </footer>
+</body>
+</html>
