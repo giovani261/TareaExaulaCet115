@@ -41,3 +41,23 @@ Route::get('/order/complete/{order}', [App\Http\Controllers\CompleteOrderControl
 Route::post('/order/{order}', [App\Http\Controllers\CompleteOrderController::class, 'completeOrder'])->name('complete');
 
 Route::get('/cryptopayment', [PaymentController::class, 'coinbaseCheckout'])->name('crypto.payment')->middleware('auth');
+
+Route::get('/Calzado', function () {
+    return view('categorias.products_calzado');
+})->name('calzado');
+
+Route::get('/Laptops&Computadoras', function () {
+    return view('categorias.products_laptops_computadoras');
+})->name('laptos_computadoras');
+
+Route::get('/Celulares&Tablets', function () {
+    return view('categorias.products_celulares_tablets');
+})->name('celulares_tablets');
+
+Route::get('/Pantallas&Audio', function () {
+    return view('categorias.products_pantallas_audio');
+})->name('pantallas_audio');
+
+Route::get('/Muebles', function () {
+    return view('categorias.products_muebles');
+})->name('muebles');

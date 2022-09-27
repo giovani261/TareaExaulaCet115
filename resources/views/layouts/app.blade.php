@@ -40,8 +40,11 @@
                         Categorias
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="{{ url('/Calzado') }}">Calzado</a>
+                            <a class="dropdown-item" href="{{ url('/Laptops&Computadoras') }}">Laptops y computadoras</a>
+                            <a class="dropdown-item" href="{{ url('/Celulares&Tablets') }}">Celulares y tablets</a>
+                            <a class="dropdown-item" href="{{ url('/Pantallas&Audio') }}">Pantallas y audio</a>
+                            <a class="dropdown-item" href="{{ url('/Muebles') }}">Muebles</a>
                         </div>
                     </li>
                 </ul>
