@@ -44,11 +44,11 @@
                         Categorias
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ url('/Calzado') }}">Calzado</a>
-                            <a class="dropdown-item" href="{{ url('/Laptops&Computadoras') }}">Laptops y computadoras</a>
-                            <a class="dropdown-item" href="{{ url('/Celulares&Tablets') }}">Celulares y tablets</a>
-                            <a class="dropdown-item" href="{{ url('/Pantallas&Audio') }}">Pantallas y audio</a>
-                            <a class="dropdown-item" href="{{ url('/Muebles') }}">Muebles</a>
+                            <a class="dropdown-item" href="{{ route('categoria.show', ['categoria_id' => 1]) }}">Calzado</a>
+                            <a class="dropdown-item" href="{{ route('categoria.show', ['categoria_id' => 2]) }}">Laptops y computadoras</a>
+                            <a class="dropdown-item" href="{{ route('categoria.show', ['categoria_id' => 3]) }}">Celulares y tablets</a>
+                            <a class="dropdown-item" href="{{ route('categoria.show', ['categoria_id' => 4]) }}">Pantallas y audio</a>
+                            <a class="dropdown-item" href="{{ route('categoria.show', ['categoria_id' => 5]) }}">Muebles</a>
                         </div>
                     </li>
                 </ul>
