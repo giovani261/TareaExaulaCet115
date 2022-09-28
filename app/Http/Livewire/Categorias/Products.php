@@ -6,7 +6,6 @@ use Livewire\Component;
 use App\Models\Product;
 use App\Models\CartManager;
 use App\Models\Categorias;
-use App\Models\Proveedores;
 
 class Products extends Component
 {
@@ -27,7 +26,8 @@ class Products extends Component
     public function render()
     {           
         $products = Product::where("categorias_id","=", $this->categoria_id)->get();
+        $categoria = Categorias::where("id","=",$this->categoria_id)->get();
 
-        return view('livewire.categorias.products',['productos' => $products])->extends('layouts.app');
+        return view('livewire.categorias.products',['productos' => $products, 'categorias' => $categoria])->extends('layouts.app');
     }
 }

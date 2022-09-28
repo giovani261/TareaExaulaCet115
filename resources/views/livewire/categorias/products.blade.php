@@ -1,5 +1,11 @@
 <div>
     <div class="container">
+    @foreach ($categorias as $cat)
+        <h4>
+            <center>{{ $cat->nombre }}</center>
+        </h4>
+    @endforeach
+
     @if (session()->has('message'))
         <div class="alert alert-success alert-dismissible" role="alert">
             {{ session('message') }}

@@ -44,11 +44,9 @@
                         Categorias
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('categoria.show', ['categoria_id' => 1]) }}">Calzado</a>
-                            <a class="dropdown-item" href="{{ route('categoria.show', ['categoria_id' => 2]) }}">Laptops y computadoras</a>
-                            <a class="dropdown-item" href="{{ route('categoria.show', ['categoria_id' => 3]) }}">Celulares y tablets</a>
-                            <a class="dropdown-item" href="{{ route('categoria.show', ['categoria_id' => 4]) }}">Pantallas y audio</a>
-                            <a class="dropdown-item" href="{{ route('categoria.show', ['categoria_id' => 5]) }}">Muebles</a>
+                            @foreach(config('Categorias') as $item)
+                                <a class="dropdown-item" href="{{ route('categoria.show', ['categoria_id' => $item->id]) }}">{{ $item->nombre }}</a>
+                            @endforeach
                         </div>
                     </li>
                 </ul>
