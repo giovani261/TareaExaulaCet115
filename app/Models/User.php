@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
+use Exception;
+use Mail;
+use App\Mail\SendCodeMail;
 
 class User extends Authenticatable
 {
@@ -47,5 +50,27 @@ class User extends Authenticatable
     public function isAdmin()
     {
         return $this->admin;
+    }
+
+    public function generateCode()
+    {
+        $code = rand(1000, 9999);
+
+        UserCode::updateOrCreate(
+            [ 'user_id' => auth()->user()->id ],
+            [ 'code' => $code ]
+        );
+
+        try {
+            
+            $details = [
+                'title' => 'Correo recivido desde ProyectoCET115.com',
+                'code' => $code
+            ];
+
+            Mail::to(auth()->user()->email)->send(new SendCodeMail($details));
+        } catch (Exception $e) {
+            info("Error: ". $e->getMessage());
+        }
     }
 }

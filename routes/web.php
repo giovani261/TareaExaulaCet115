@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\TwoFAController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,26 +21,30 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('2fa', [TwoFAController::class, 'index'])->name('2fa.index');
+Route::post('2fa', [TwoFAController::class, 'store'])->name('2fa.post');
+Route::get('2fa/reset', [TwoFAController::class, 'resend'])->name('2fa.resend');
+
 Route::get('/roles', [App\Http\Controllers\HomeController::class, 'roles'])->name('roles');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/create', App\Http\Livewire\Product\Create::class)->name('products.create')->middleware('auth');
+Route::get('/create', App\Http\Livewire\Product\Create::class)->name('products.create')->middleware('auth','2fa');
 
 Route::get('/products/{product}', App\Http\Livewire\Product\Show::class)->name('products.show');
 
 Route::get('/checkout', App\Http\Livewire\Checkout::class)->name('checkout')->middleware('check');
 
-Route::get('/paypal/payment', [PaymentController::class, 'paypalPaymentRequest'])->name('paypal.payment')->middleware('auth');
+Route::get('/paypal/payment', [PaymentController::class, 'paypalPaymentRequest'])->name('paypal.payment')->middleware('auth','2fa');
 
 Route::get('/paypal/checkout/{status}', [PaymentController::class, 'paypalCheckout'])->name('paypal.checkout');
 
-Route::post('/stripe/checkout', [PaymentController::class, 'stripeCheckout'])->name('stripe.checkout')->middleware('auth');
+Route::post('/stripe/checkout', [PaymentController::class, 'stripeCheckout'])->name('stripe.checkout')->middleware('auth','2fa');
 
 Route::get('/order/complete/{order}', [App\Http\Controllers\CompleteOrderController::class, 'completeForm'])->name('order.complete');
 
 Route::post('/order/{order}', [App\Http\Controllers\CompleteOrderController::class, 'completeOrder'])->name('complete');
 
-Route::get('/cryptopayment', [PaymentController::class, 'coinbaseCheckout'])->name('crypto.payment')->middleware('auth');
+Route::get('/cryptopayment', [PaymentController::class, 'coinbaseCheckout'])->name('crypto.payment')->middleware('auth','2fa');
 
 Route::get('/categorias/{categoria_id}', App\Http\Livewire\Categorias\Products::class)->name('categoria.show');
