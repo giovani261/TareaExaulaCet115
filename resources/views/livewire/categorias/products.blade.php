@@ -5,7 +5,7 @@
             <center>{{ $cat->nombre }}</center>
         </h4>
     @endforeach
-
+    <span class="text-secondary"><b>{{ $productsCount }}</b> PRODUCTOS</span>
     @if (session()->has('message'))
         <div class="alert alert-success alert-dismissible" role="alert">
             {{ session('message') }}

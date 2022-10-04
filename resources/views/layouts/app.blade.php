@@ -27,7 +27,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light navbgcolor shadow-sm">
             <div class="container">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item dropdown">
@@ -37,6 +37,10 @@
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                             <span class="navbar-toggler-icon"></span>
                         </button>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="navbar-brand" href="tel:503-2298-3777"><i class="fa-solid fa-phone"></i> 2298-3777</a>
                     </li>
 
                     <li class="nav-item dropdown">
@@ -59,6 +63,9 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
+                    <li class="nav-item dropdown">
+                        <a class="navbar-brand" href="{{ url('/') }}"><i class="fa-solid fa-circle-question"></i> Preguntas Frecuentes</a>
+                    </li>
                         <!-- Authentication Links -->
 
                         <li class="nav-item">
@@ -167,6 +174,14 @@
                             <a href="http://adidas.com/" target="_blank"><img src="{{ asset('imgs/m1.png') }}" alt="Marca 1" class="img-thumbnail asc1" style="height: 80px; width: 80px;"></a>
                             <a href="https://nike.com/" target="_blank"><img src="{{ asset('imgs/m2.jpg') }}" alt="Marca 2" class="img-thumbnail asc2" style="height: 80px; width: 80px;"></a>
                             <a href="https://puma.com" target="_blank"><img src="{{ asset('imgs/m3.png') }}" alt="Marca 3" class="img-thumbnail asc3" style="height: 80px; width: 80px;"></a>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col">
+                            <center>
+                                <img src="{{ asset('imgs/pagos-seguros-autorizado.jpg') }}" alt="Pagos Seguros" class="img-thumbnail" style="height: 150px; width: 500px;">
+                            </center>
                         </div>
                     </div>
                 </div>

@@ -26,8 +26,9 @@ class Products extends Component
     public function render()
     {           
         $products = Product::where("categorias_id","=", $this->categoria_id)->get();
+        $productsCount = $products->count();
         $categoria = Categorias::where("id","=",$this->categoria_id)->get();
 
-        return view('livewire.categorias.products',['productos' => $products, 'categorias' => $categoria])->extends('layouts.app');
+        return view('livewire.categorias.products',['productos' => $products, 'categorias' => $categoria, 'productsCount' => $productsCount])->extends('layouts.app');
     }
 }

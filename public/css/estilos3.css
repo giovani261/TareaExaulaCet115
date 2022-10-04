@@ -12,6 +12,13 @@
 /* .icons:hover{
   transform: scale(1.15);  (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) 
 } */
+.navbgcolor{
+  background-color: #B8263D;
+}
+
+.navbar-brand,.navbar-text,.nav-link{
+  color:white !important;
+}
 
 .card-index:hover{
   cursor: pointer;
