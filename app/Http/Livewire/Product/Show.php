@@ -27,6 +27,13 @@ class Show extends Component
     {
         $categoria = Categorias::where("id","=",$this->product->categorias_id)->get();
         $proveedor = Proveedores::where("id","=",$this->product->proveedores_id)->get();
-        return view('livewire.product.show',['categoria' => $categoria], ['proveedor' => $proveedor])->extends('layouts.app');
+        $productosRelacionadosP = Product::where("id","!=",$this->product->id)->where("categorias_id","=", $this->product->categorias_id)->first();
+        //dd($productosRelacionadosP->id);
+        if($productosRelacionadosP!=null){
+            $productosRelacionados = Product::where("id","!=",$this->product->id)->where("id","!=",$productosRelacionadosP->id)->where("categorias_id","=", $this->product->categorias_id)->get();
+            return view('livewire.product.show',['categoria' => $categoria, 'proveedor' => $proveedor, 'rel' => $productosRelacionados, 'relP' => $productosRelacionadosP])->extends('layouts.app');
+        }
+        $productosRelacionados = null;
+        return view('livewire.product.show',['categoria' => $categoria, 'proveedor' => $proveedor, 'rel' => $productosRelacionados, 'relP' => $productosRelacionadosP])->extends('layouts.app');
     }
 }

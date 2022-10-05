@@ -10,7 +10,8 @@ use App\Models\Categorias;
 class Products extends Component
 {
     public $categoria_id;
-    
+    public $precioMinimo = 0;
+    public $precioMaximo = 10000;
 
     public function addToCart(CartManager $cart, $slug)
     {
@@ -25,10 +26,9 @@ class Products extends Component
 
     public function render()
     {           
-        $products = Product::where("categorias_id","=", $this->categoria_id)->get();
+        $products = Product::where("categorias_id","=", $this->categoria_id)->where("price",">=",$this->precioMinimo)->where("price","<=",$this->precioMaximo)->get();
         $productsCount = $products->count();
         $categoria = Categorias::where("id","=",$this->categoria_id)->get();
-
         return view('livewire.categorias.products',['productos' => $products, 'categorias' => $categoria, 'productsCount' => $productsCount])->extends('layouts.app');
     }
 }
