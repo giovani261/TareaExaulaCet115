@@ -43,7 +43,7 @@ class PaymentController extends Controller
             'source' => $request->stripeToken
         ]);
         
-        Order::create(['shopping_cart_id' => $cart->getCart()->id, 'email' => $request->email]);
+        Order::create(['shopping_cart_id' => $cart->getCart()->id, 'email' => $request->email, 'total' => $cart->getAmount(), 'name' => Auth::user()->name, 'address_line_1' => Auth::user()->address_line_1]);
 
         session()->flash('message', 'Compra exitosa, hemos enviado un correo con un resumen de tu compra');
         return redirect()->route('welcome');
@@ -73,7 +73,8 @@ class PaymentController extends Controller
             if(isset($cargo->payments[0]['status'])){
                 if($cargo->payments[0]['status']=='CONFIRMED'){
                     session()->flash('alert-class', 'alert-success'); 
-                    session()->flash('message', 'Se realizo la compra correctamente');
+                    Order::create(['shopping_cart_id' => $cart->getCart()->id, 'email' => $request->email, 'total' => $cart->getAmount(), 'name' => Auth::user()->name, 'address_line_1' => Auth::user()->address_line_1]);
+                    session()->flash('message', 'Compra exitosa, hemos enviado un correo con un resumen de tu compra');
                     return redirect()->route('checkout');
                 }
             }

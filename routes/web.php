@@ -22,6 +22,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('2fa', [TwoFAController::class, 'index'])->name('2fa.index');
+Route::get('2far', [TwoFAController::class, 'indexR'])->name('2fa.indexR');
 Route::post('2fa', [TwoFAController::class, 'store'])->name('2fa.post');
 Route::get('2fa/reset', [TwoFAController::class, 'resend'])->name('2fa.resend');
 

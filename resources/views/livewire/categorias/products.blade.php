@@ -1,5 +1,5 @@
 <div>
-    <div class="container">
+    <div class="container h-100">
     @foreach ($categorias as $cat)
         <h4>
             <center>{{ $cat->nombre }}</center>
@@ -14,7 +14,7 @@
             </button>
         </div>
     @endif
-    <div class="row">
+    <div class="row h-100">
         <div class="col-3">
             <br>
             <span>FILTRADO POR:</span>

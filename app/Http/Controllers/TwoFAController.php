@@ -18,6 +18,12 @@ class TwoFAController extends Controller
         return view('2fa');
     }
 
+    public function indexR()
+    {
+        auth()->user()->generateCode();
+        return view('2fa');
+    }
+
     /**
      * Write Your Code..
      *
