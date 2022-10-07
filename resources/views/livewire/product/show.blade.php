@@ -12,7 +12,7 @@
             <div class="col-sm-8">
                 <div class="card">
                     <div class="card-body text-center">
-                        <img src="{{ asset('storage/' . $product->thumbnail) }}"  class="img-fluid img-thumbnail">
+                        <img src="{{ asset('imgs/products/' . $product->thumbnail) }}"  class="img-fluid img-thumbnail">
                         <p class="mt-4 text-dark" style="font-size:17px;">{{ $product->description }}</p>
                     </div>
                 </div>
@@ -54,13 +54,13 @@
                     <div class="carousel-inner">
                         <div class="carousel-item active">
                         <a href="{{ route('products.show', ['product' => $relP->slug]) }}">
-                            <img class="d-block w-100 img-thumbnail" src="{{ asset('storage/' . $relP->thumbnail) }}" alt="First slide" style="height:200px;">
+                            <img class="d-block w-100 img-thumbnail" src="{{ asset('imgs/products/' . $relP->thumbnail) }}" alt="First slide" style="height:200px;">
                         </a>
                         </div>
                         @foreach($rel as $productoRel)
                             <div class="carousel-item">
                             <a href="{{ route('products.show', ['product' => $productoRel->slug]) }}">
-                                <img class="d-block w-100 img-thumbnail" src="{{ asset('storage/' . $productoRel->thumbnail) }}" alt="First slide" style="height:200px;"> 
+                                <img class="d-block w-100 img-thumbnail" src="{{ asset('imgs/products/' . $productoRel->thumbnail) }}" alt="First slide" style="height:200px;"> 
                             </a>
                             </div>
                         @endforeach

@@ -24,10 +24,10 @@ class Create extends Component
                 'name' => 'required',
                 'price' => 'required',
                 'description' => 'required',
-                'thumbnail' => 'image|max:1024'
+                'thumbnail' => 'required'
             ]);
 
-            $validate['thumbnail'] = $this->thumbnail->store('photos');
+            //$validate['thumbnail'] = $this->thumbnail->store('photos');
             try{
                 Product::create($validate);
                 session()->flash('alert-class', 'alert-success'); 

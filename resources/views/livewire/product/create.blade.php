@@ -30,14 +30,9 @@
             <input type="number" wire:model="price" class="form-control mb-2">
             @error('price') <p class="error mb-2">{{ $message }}</p> @enderror
 
-            <label for="">Thumbnail</label>
-            <input type="file" wire:model="thumbnail" class="form-control mb-2">
+            <label for="">Nombre de archivo (con extension)</label>
+            <input type="text" wire:model="thumbnail" class="form-control mb-2">
             @error('name') <p class="error mb-2">{{ $message }}</p> @enderror
-
-            @if ($thumbnail)
-                {{ $thumbnail }}
-                <img src="{{ $thumbnail->temporaryUrl() }}" class="img-fluid mb-2">
-            @endif
 
             <button type="submit" class="btn btn-outline-primary btn-block">Save</button>
 
