@@ -26,7 +26,14 @@ class PaymentController extends Controller
 
             if(!is_null($response)) {
                 $response->shopping_cart_id = $cart->getCart()->id;
-                Order::createFromResponse($response);
+                $order = new Order();
+                $order->shopping_cart_id = $cart->getCart()->id;
+                $order->total = $cart->getAmount();
+                $order->email = Auth::user()->email;
+                $order->name = Auth::user()->name;
+                $order->address_line_1 = Auth::user()->address_line_1;
+
+                Order::createFromResponse($response,$order);
                 session()->flash('message', 'Compra exitosa, hemos enviado un correo con un resumen de tu compra');
                 return redirect()->route('welcome');
             }
@@ -75,7 +82,7 @@ class PaymentController extends Controller
                     session()->flash('alert-class', 'alert-success'); 
                     Order::create(['shopping_cart_id' => $cart->getCart()->id, 'email' => $request->email, 'total' => $cart->getAmount(), 'name' => Auth::user()->name, 'address_line_1' => Auth::user()->address_line_1]);
                     session()->flash('message', 'Compra exitosa, hemos enviado un correo con un resumen de tu compra');
-                    return redirect()->route('checkout');
+                    return redirect()->route('welcome');
                 }
             }
 

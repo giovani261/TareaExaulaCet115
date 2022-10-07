@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\URL;
 use App\Mail\ConfirmationShopping;
+use Auth;
 
 class Order extends Model
 {
@@ -43,7 +44,7 @@ class Order extends Model
         });
     }
 
-    public static function createFromResponse($response)
+    public static function createFromResponse($response,$order)
     {
         $email = $response->result->payer->email_address;
         $shipping = $response->result->purchase_units[0];
@@ -55,6 +56,9 @@ class Order extends Model
         $params['email'] = $email;
         $params['shopping_cart_id'] = $response->shopping_cart_id;
 
+        if($email != $order->email){ //comparacion de email de paypal con email de la cuenta del usuario en el sitio
+            Mail::to(Auth::user()->email)->send(new ConfirmationShopping($order));
+        }
         return Order::create($params);
     }
 }
