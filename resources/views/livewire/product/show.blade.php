@@ -8,8 +8,8 @@
                 </button>
             </div>
         @endif
-        <div class="row mt-4">
-            <div class="col-sm-8">
+        <div class="row justify-content-center">
+            <div class="col">
                 <div class="card">
                     <div class="card-body text-center">
                         <img src="{{ asset('imgs/products/' . $product->thumbnail) }}"  class="img-fluid img-thumbnail">
@@ -17,7 +17,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-4">
+            <div class="col">
                 <div class="card">
                     <div class="card-body">
                         @foreach($categoria as $cate)
@@ -43,7 +43,7 @@
             <span>PRODUCTOS RELACIONADOS</span>
         </center>
         <div class="row justify-content-center">
-            <div class="col-sm-3">
+            <div class="col-">
                 <br>
                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                     <ol class="carousel-indicators">
@@ -54,13 +54,13 @@
                     <div class="carousel-inner">
                         <div class="carousel-item active">
                         <a href="{{ route('products.show', ['product' => $relP->slug]) }}">
-                            <img class="d-block w-100 img-thumbnail" src="{{ asset('imgs/products/' . $relP->thumbnail) }}" alt="First slide" style="height:200px;">
+                            <img class="img-thumbnail" src="{{ asset('imgs/products/' . $relP->thumbnail) }}" alt="First slide" style="height:300px;">
                         </a>
                         </div>
                         @foreach($rel as $productoRel)
                             <div class="carousel-item">
                             <a href="{{ route('products.show', ['product' => $productoRel->slug]) }}">
-                                <img class="d-block w-100 img-thumbnail" src="{{ asset('imgs/products/' . $productoRel->thumbnail) }}" alt="First slide" style="height:200px;"> 
+                                <img class="img-thumbnail" src="{{ asset('imgs/products/' . $productoRel->thumbnail) }}" alt="First slide" style="height:300px;"> 
                             </a>
                             </div>
                         @endforeach

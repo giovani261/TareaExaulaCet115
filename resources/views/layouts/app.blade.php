@@ -38,27 +38,25 @@
                             <span class="navbar-toggler-icon"></span>
                         </button>
                     </li>
-
-                    <li class="nav-item">
-                        <a class="navbar-brand" href="tel:503-2298-3777"><i class="fa-solid fa-phone"></i> 2298-3777</a>
-                    </li>
-
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Categorias
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            @foreach(config('Categorias') as $item)
-                                <a class="dropdown-item" href="{{ route('categoria.show', ['categoria_id' => $item->id]) }}">{{ $item->nombre }}</a>
-                            @endforeach
-                        </div>
-                    </li>
                 </ul>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="navbar-brand" href="tel:503-2298-3777"><i class="fa-solid fa-phone"></i> 2298-3777</a>
+                        </li>
 
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Categorias
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                @foreach(config('Categorias') as $item)
+                                    <a class="dropdown-item" href="{{ route('categoria.show', ['categoria_id' => $item->id]) }}">{{ $item->nombre }}</a>
+                                @endforeach
+                            </div>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

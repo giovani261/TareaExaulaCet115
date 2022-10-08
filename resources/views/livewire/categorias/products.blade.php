@@ -14,22 +14,22 @@
             </button>
         </div>
     @endif
-    <div class="row h-100">
-        <div class="col-3">
+    <div class="row">
+        <div class="col">
             <br>
             <span>FILTRADO POR:</span>
             <hr/>
             <span>Gama de Precios</span>
             <hr/>
-            <div class="price-input">
+            <div class="price-input container">
                 <div class="field">
                 <span>Min</span>
-                <input wire:model="precioMinimo" id="precioMin" type="number" class="input-min" value="2500">
+                <input wire:model="precioMinimo" id="precioMin" type="number" class="input-min form-control" value="2500">
                 </div>
                 <div class="separator">-</div>
                 <div class="field">
                 <span>Max</span>
-                <input wire:model="precioMaximo" id="precioMax" type="number" class="input-max" value="7500">
+                <input wire:model="precioMaximo" id="precioMax" type="number" class="input-max form-control" value="7500">
                 </div>
             </div>
             <div class="slider">
@@ -41,14 +41,15 @@
             </div>
         </div>
         @foreach ($productos as $product)
-            <div class="col-sm-4 mb-2">
+            <div class="col">
+                <center>
                 <div class="card card-index" style="width: 18rem">
                     <a href="{{ route('products.show', ['product' => $product->slug]) }}">
                         <img class="card-img-top" src="{{ asset('imgs/products/' . $product->thumbnail) }}" alt="Card img top">
                     </a>
                     <div class="card-body">
-                        <h5 class="card-title font-weight-bold">
-                            ${{ $product->price }} <sup>00</sup>
+                        <h5 class="card-title font-weight-bold d-flex justify-content-left">
+                            ${{ $product->price }}
                         </h5>
                         <p><span></span></p>
                         <div class="d-flex justify-content-end">
@@ -56,6 +57,7 @@
                         </div>
                     </div>
                 </div>
+                </center>
             </div>       
         @endforeach
     </div>

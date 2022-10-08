@@ -65,7 +65,8 @@
     
     <div class="row">
         @foreach ($products as $product)
-            <div class="col-sm-4 mb-2">
+            <div class="col">
+                <center>
                 <div class="card card-index" style="width: 18rem">
                     <a href="{{ route('products.show', ['product' => $product->slug]) }}">
                         <img class="card-img-top" src="{{ asset('imgs/products/' . $product->thumbnail) }}" alt="Card img top">
@@ -80,6 +81,7 @@
                         </div>
                     </div>
                 </div>
+                </center>
             </div>       
         @endforeach
     </div>

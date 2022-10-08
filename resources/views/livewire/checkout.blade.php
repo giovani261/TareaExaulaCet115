@@ -14,7 +14,7 @@
         <h2 class="text-center mb-4 mt-3">Resumen de compra</h2>
 
         <div class="row">
-            <div class="col-sm-7">
+            <div class="col">
                 <div class="card">
                     <div class="card-body">
                         <table class="table text-center table-bordered table-striped table-hover">
@@ -47,7 +47,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-5">
+            <div class="col">
                 <center><h5><b>Metodos de pago</b></h5></center>
                 <div class="card">
                     <div class="card-header">

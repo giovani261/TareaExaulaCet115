@@ -65,7 +65,7 @@ class User extends Authenticatable
         try {
             
             $details = [
-                'title' => 'Correo recivido desde ProyectoCET115.com',
+                'title' => 'Correo recibido desde tareaexaulacet115siman.herokuapp.com',
                 'code' => $code
             ];
 
