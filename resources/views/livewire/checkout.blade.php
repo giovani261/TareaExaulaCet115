@@ -162,7 +162,7 @@
           description : 'Compra de productos',
           @if(!Auth::guest())  
           metadata: {
-            total: {{ $products->sum('price') }}*100,
+            total: {{ $products->sum('price') }},
             nombre_usuario: "{{ Auth::user()->name }}",
             correo_usuario: "{{ Auth::user()->email }}",
             residencia: "{{ Auth::user()->address_line_1 }}",
