@@ -67,21 +67,32 @@
                             </div>
                         </div>
                 </form>
-                <form action="{{ route('crypto.payment') }}">
-                        <div class="card">
-                            <div class="card-header">
-                                <b><i class="fa-brands fa-bitcoin"></i> <i class="fa-brands fa-ethereum"></i> Cryptomonedas</b>
-                            </div>
-                            <div class="card-body">
-                                <center><button class="btn btn-outline-primary" type="submit">Pagar</button></center>
-                            </div>
-                        </div>
-                </form>
+                <div class="card">
+                    <div class="card-header">
+                        <b><i class="fa-brands fa-bitcoin"></i> <i class="fa-brands fa-ethereum"></i> Cryptomonedas</b>
+                    </div>
+                    <div class="card-body">
+                    <form action="{{ route('crypto.payment') }}">
+                        <center><button class="btn btn-outline-primary" type="submit">Pagar con Coinbase</button></center>
+                    </form>
+                    <form id="cryptocomForm" name="cryptocomForm" action="{{ route('crypto.cryptocom.payment') }}">
+                        @guest
+                            <br>
+                            <center><h3>Inicie sesion para poder pagar con crypto.com</h3></center>
+                            <center><img class="img-thumbnail" src="/imgs/crypto.comPay.png" alt="assd" style="height:50px; width:230px;"></center>
+                        @else
+                        <br>
+                        <center><div id="pay-button"></div></center>
+                        @endguest
+                    </form>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
 @push('scripts')
+<script src="https://js.crypto.com/sdk?publishable-key=pk_test_pQc3wFfS5sFXXoBzfGo1sbQN"></script>
 <script src="https://js.stripe.com/v3/"></script> 
 
 <script>
@@ -141,4 +152,31 @@
     }
 
 </script>
+
+<script>
+    cryptopay.Button({
+      createPayment: function(actions) {
+        return actions.payment.create({
+          currency: 'USD',
+          amount: {{ $products->sum('price') }}*100,
+          description : 'Compra de productos',
+          @if(!Auth::guest())  
+          metadata: {
+            total: {{ $products->sum('price') }}*100,
+            nombre_usuario: "{{ Auth::user()->name }}",
+            correo_usuario: "{{ Auth::user()->email }}",
+            residencia: "{{ Auth::user()->address_line_1 }}",
+          }
+          @endif
+        });
+      },
+      onApprove: function (data, actions) {
+        // Optional: add logic such as browser redirection or check data object content
+        document.getElementById("cryptocomForm").submit();
+      },
+      defaultLang: 'es-ES' // Optional: default language for payment page
+    }).render("#pay-button")
+  </script>
+
+
 @endpush

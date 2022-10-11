@@ -92,4 +92,10 @@ class PaymentController extends Controller
             return redirect()->route('checkout');
         }
     }
+
+    public function cryptocomCheckout(Request $request, CartManager $cart){
+        Order::create(['shopping_cart_id' => $cart->getCart()->id, 'email' => Auth::user()->email, 'total' => $cart->getAmount(), 'name' => Auth::user()->name, 'address_line_1' => Auth::user()->address_line_1]);
+        session()->flash('message', 'Compra exitosa, hemos enviado un correo con un resumen de tu compra');
+        return redirect()->route('welcome');
+    }
 }

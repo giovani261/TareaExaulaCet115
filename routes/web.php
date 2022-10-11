@@ -48,4 +48,6 @@ Route::post('/order/{order}', [App\Http\Controllers\CompleteOrderController::cla
 
 Route::get('/cryptopayment', [PaymentController::class, 'coinbaseCheckout'])->name('crypto.payment')->middleware('auth','2fa');
 
+Route::get('/cryptopayment/cryptocom', [PaymentController::class, 'cryptocomCheckout'])->name('crypto.cryptocom.payment')->middleware('auth','2fa');
+
 Route::get('/categorias/{categoria_id}', App\Http\Livewire\Categorias\Products::class)->name('categoria.show');
