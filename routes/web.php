@@ -51,3 +51,5 @@ Route::get('/cryptopayment', [PaymentController::class, 'coinbaseCheckout'])->na
 Route::get('/cryptopayment/cryptocom', [PaymentController::class, 'cryptocomCheckout'])->name('crypto.cryptocom.payment')->middleware('auth','2fa');
 
 Route::get('/categorias/{categoria_id}', App\Http\Livewire\Categorias\Products::class)->name('categoria.show');
+
+Route::get('/preguntasFrecuentes', [App\Http\Controllers\HomeController::class,'AQ'])->name('preguntas_frecuentes');
