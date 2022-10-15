@@ -31,7 +31,9 @@ class HomeController extends Controller
     public function roles(){
         //creacion rol de admin
         //$role_admin = Role::create(['name' => 'administrador']);
-        User::find(1)->assignRole('administrador');
+        User::find(7)->assignRole('administrador');
+        User::find(8)->assignRole('administrador');
+        User::find(9)->assignRole('administrador');
         //creacion rol de cliente
         //$role_usuario = Role::create(['name' => 'cliente']);
     }
