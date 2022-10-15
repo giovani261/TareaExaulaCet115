@@ -37,4 +37,6 @@ class HomeController extends Controller
         //creacion rol de cliente
         //$role_usuario = Role::create(['name' => 'cliente']);
     }
+
+    public function AQ(){ return view("preguntasFrecuentes.AQPage")->extends('layouts.app');}
 }

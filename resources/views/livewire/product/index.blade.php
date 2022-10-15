@@ -69,10 +69,12 @@
                 <center>
                 <div class="card card-index" style="width: 18rem">
                     <a href="{{ route('products.show', ['product' => $product->slug]) }}">
-                        <img class="card-img-top" src="{{ asset('imgs/products/' . $product->thumbnail) }}" alt="Card img top">
+                        <img class="card-img-top" src="{{ asset('imgs/products/' . $product->thumbnail) }}"   alt="Card img top">
                     </a>
                     <div class="card-body">
                         <h5 class="card-title font-weight-bold">
+                            {{ ucfirst(str_replace("-"," ",$product->slug)) }}
+                            <br>
                             ${{ $product->price }} <sup>00</sup>
                         </h5>
                         <p><span></span></p>

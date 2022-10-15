@@ -62,7 +62,7 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                     <li class="nav-item dropdown">
-                        <a class="navbar-brand" href="{{ url('/') }}"><i class="fa-solid fa-circle-question"></i> Preguntas Frecuentes</a>
+                        <a class="navbar-brand" href="{{ route('preguntas_frecuentes') }}"><i class="fa-solid fa-circle-question"></i> Preguntas Frecuentes</a>
                     </li>
                         <!-- Authentication Links -->
 
