@@ -56,4 +56,14 @@ Route::get('/preguntasFrecuentes', [App\Http\Controllers\HomeController::class,'
 
 Route::get('/ordenes', [App\Http\Controllers\OrderController::class, 'index'])->name('ordenes.index');
 
+Route::get('/archivo', [App\Http\Controllers\OrderController::class, 'archivo'])->name('ordenes.archivo');
+
+Route::get('/archivar/{order_id}/{par?}', [App\Http\Controllers\OrderController::class, 'archivar'])->name('ordenes.archivar');
+
 Route::get('/ordenes/{order_id}', [App\Http\Controllers\OrderController::class, 'detalle'])->name('ordenes.detalle');
+
+Route::get('/ordenesAdmin', [App\Http\Controllers\OrderController::class, 'indexAdmin'])->name('ordenes.indexAdmin');
+
+Route::get('/ordenesAdmin/{order_id}', [App\Http\Controllers\OrderController::class, 'detalleAdmin'])->name('ordenes.detalleAdmin');
+
+Route::get('/ordenesAdminEstado/{order_id}/{par?}', [App\Http\Controllers\OrderController::class, 'cambiarEstado'])->name('ordenes.cambiarEstado');

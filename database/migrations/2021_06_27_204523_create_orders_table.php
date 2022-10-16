@@ -27,6 +27,7 @@ class CreateOrdersTable extends Migration
             $table->string('postal_code')->default("");
             $table->string('country_code')->default("");
             $table->integer('status')->default(0);
+            $table->integer('archivo')->default(0);
 
             $table->timestamps();
         });

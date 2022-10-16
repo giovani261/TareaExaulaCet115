@@ -32,7 +32,7 @@ class PaymentController extends Controller
                 $order->email = Auth::user()->email;
                 $order->name = Auth::user()->name;
                 $order->address_line_1 = Auth::user()->address_line_1;
-
+                $order->status =1;
                 Order::createFromResponse($response,$order);
                 session()->flash('message', 'Compra exitosa, hemos enviado un correo con un resumen de tu compra');
                 return redirect()->route('welcome');
@@ -50,7 +50,7 @@ class PaymentController extends Controller
             'source' => $request->stripeToken
         ]);
         
-        Order::create(['shopping_cart_id' => $cart->getCart()->id, 'email' => $request->email, 'total' => $cart->getAmount(), 'name' => Auth::user()->name, 'address_line_1' => Auth::user()->address_line_1]);
+        Order::create(['shopping_cart_id' => $cart->getCart()->id, 'email' => $request->email, 'total' => $cart->getAmount(), 'name' => Auth::user()->name, 'address_line_1' => Auth::user()->address_line_1,'status'=>1]);
 
         session()->flash('message', 'Compra exitosa, hemos enviado un correo con un resumen de tu compra');
         return redirect()->route('welcome');
@@ -80,7 +80,7 @@ class PaymentController extends Controller
             if(isset($cargo->payments[0]['status'])){
                 if($cargo->payments[0]['status']=='CONFIRMED'){
                     session()->flash('alert-class', 'alert-success'); 
-                    Order::create(['shopping_cart_id' => $cart->getCart()->id, 'email' => $request->email, 'total' => $cart->getAmount(), 'name' => Auth::user()->name, 'address_line_1' => Auth::user()->address_line_1]);
+                    Order::create(['shopping_cart_id' => $cart->getCart()->id, 'email' => $request->email, 'total' => $cart->getAmount(), 'name' => Auth::user()->name, 'address_line_1' => Auth::user()->address_line_1,'status'=>1]);
                     session()->flash('message', 'Compra exitosa, hemos enviado un correo con un resumen de tu compra');
                     return redirect()->route('welcome');
                 }
@@ -94,7 +94,7 @@ class PaymentController extends Controller
     }
 
     public function cryptocomCheckout(Request $request, CartManager $cart){
-        Order::create(['shopping_cart_id' => $cart->getCart()->id, 'email' => Auth::user()->email, 'total' => $cart->getAmount(), 'name' => Auth::user()->name, 'address_line_1' => Auth::user()->address_line_1]);
+        Order::create(['shopping_cart_id' => $cart->getCart()->id, 'email' => Auth::user()->email, 'total' => $cart->getAmount(), 'name' => Auth::user()->name, 'address_line_1' => Auth::user()->address_line_1,'status'=>1]);
         session()->flash('message', 'Compra exitosa, hemos enviado un correo con un resumen de tu compra');
         return redirect()->route('welcome');
     }

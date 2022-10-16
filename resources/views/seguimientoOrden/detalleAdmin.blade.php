@@ -5,8 +5,7 @@
     
     <br>
     <div>
-        <h3 style="padding-left:310px"><b>Detalle de tu pedido </b></h3>
-            
+        <h3 style="padding-left:310px"><b>Detalle del pedido </b></h3>
         
         <table class="table-bordered table">
                 <thead>
@@ -65,10 +64,13 @@
                 Pedido Inconcluso: Hubo algun inconveniente al entregar el paquete. Ponte en contacto con el vendedor para obtener mas informacion.
             @endif
 
-            @if ($order->archivo==0)
-            <a class='btn btn-primary' href="{{route("ordenes.archivar",[$order->id])}}">Archivar</a> (Si archivas el pedido siempre lo podras ver en tus pedidos archivados)
-            @endif
-
+        <hr>
+            <h5>Gestionar el estado</h5>
+            <a class='btn btn-primary' href="{{route("ordenes.cambiarEstado",[$order->id,2])}}">Marcar Preparado</a>
+            <a class='btn btn-primary' href="{{route("ordenes.cambiarEstado",[$order->id,3])}}">Marcar Enviado</a>
+            <a class='btn btn-success' href="{{route("ordenes.cambiarEstado",[$order->id,4])}}">Marcar Entregado</a>
+            <a class='btn btn-danger' href="{{route("ordenes.cambiarEstado",[$order->id,5])}}">Marcar Cancelado</a>
+            <a class='btn btn-warning' href="{{route("ordenes.cambiarEstado",[$order->id,6])}}">Marcar Inconcluso</a>
         <hr>
     </div>
 

@@ -94,6 +94,9 @@
                                         <a class="dropdown-item" href="{{ url('/create') }}">
                                             Crear Producto
                                         </a>
+                                        <a class="dropdown-item" href="{{ route('ordenes.indexAdmin') }}">
+                                            Ver Pedidos de clientes
+                                        </a>
                                     @endrole
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();

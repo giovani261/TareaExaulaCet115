@@ -6,11 +6,11 @@
     <br>
     <div>
         <h3 style="padding-left:310px"><b>Tus Pedidos</b></h3>
-        <a class='btn btn-primary' href="{{route("ordenes.archivo")}}">Ver pedidos archivados</a>
         
         <table class="table table-bordered">
                 <thead>
                 <tr>
+                    <th>E-Mail</th>
                     <th>Nombre</th>
                     <th>Total</th>
                     <th>Estado</th>
@@ -20,6 +20,7 @@
                 <tbody>
                 @foreach($orders as $order)
                     <tr>
+                        <td>{{$order->email}}</td>
                         <td>{{$order->name}}</td>
                         <td>$ {{$order->total}}</td>
                         <td>
@@ -40,7 +41,7 @@
                             @endif
                             
                         </td>
-                        <td><a href="{{route("ordenes.detalle",[$order->id])}}">Ver detalles</a></td>
+                        <td><a href="{{route("ordenes.detalleAdmin",[$order->id])}}">Ver detalles</a></td>
                     </tr>
                 @endforeach
                 </tbody>
