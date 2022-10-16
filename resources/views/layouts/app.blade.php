@@ -90,6 +90,7 @@
 
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('ordenes.index') }}">Ver mis ordenes</a>
                                     @role('administrador')
                                         <a class="dropdown-item" href="{{ url('/create') }}">
                                             Crear Producto
@@ -107,7 +108,7 @@
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
-                                    <a class="dropdown-item" href="{{ route('ordenes.index') }}">Ver mis ordenes</a>
+                                    
                                 </div>
                             </li>
                         @endguest
