@@ -41,6 +41,34 @@
        
         
     </div>
+
+
+
+    <div>
+        <hr>
+        <h3>Estado del pedido</h3>
+
+            @if ($order->status==0)
+                Pedido Confirmado: Tu pedido fue registrado exitosamente en la página.
+            @elseif ($order->status==1)
+                Pago Aprobado: El pago de tu pedido fue autorizado.
+            @elseif ($order->status==2)
+                Pedido Preparado: Tu pedido ya fue preparado y está listo para ser despachado.
+            @elseif ($order->status==3)
+                Enviando Pedido: ¡Tu pedido ya está en camino!
+            @elseif ($order->status==4)
+                Entregado: Tu pedido ya ha sido entregado.
+            @elseif ($order->status==5)
+                Pedido Cancelado: El pedido fue cancelado.
+            @else
+                Pedido Inconcluso: Hubo algun inconveniente al entregar el paquete. Ponte en contacto con el vendedor para obtener mas informacion.
+            @endif
+
+        <hr>
+    </div>
+
+
+
     <div>
         <h3>Detalle de los productos</h3>
     <table class="table-bordered table">
