@@ -14,7 +14,7 @@ class Order extends Model
     use HasFactory;
 
     protected $fillable = ['shopping_cart_id', 'total', 'email', 'name', 'address_line_1',
-        'address_line_2', 'admin_area_2', 'admin_area_1', 'country_code', 'postal_code'
+        'address_line_2', 'admin_area_2', 'admin_area_1', 'country_code', 'postal_code', 'status'
     ];
 
     public function shoppingCart()
