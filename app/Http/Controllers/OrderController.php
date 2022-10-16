@@ -8,6 +8,7 @@ use App\Models\ProductShoppingCart;
 use App\Models\ShoppingCart;
 use Illuminate\Http\Request;
 use Auth;
+use Illuminate\Support\Collection;
 
 class OrderController extends Controller
 {
@@ -25,38 +26,29 @@ class OrderController extends Controller
 
     public function detalle($id)
     {
-        $ordenes=Order::all();
-        $orden_filtrada=$ordenes->where('id', $id);
+        $orden_filtrada=Order::where('id',$id)->get();
+        
+        $shop_filt=ShoppingCart::where('id',$orden_filtrada->pluck('shopping_cart_id'))->get();
 
-        $shop_cart=ShoppingCart::all();
-        $shop_filtrada=$shop_cart->where('id', $orden_filtrada->get('shopping_cart_id'));
-
-        $product_shopping=ProductShoppingCart::all();
-
-        $product_shopping_filtrados=$product_shopping->
-        where('shopping_cart_id', $shop_filtrada->get('id'));
+        $product_shop_filt=ProductShoppingCart::where('shopping_cart_id',$shop_filt->pluck('id'))->get();
 
         $productos=Product::all();
 
-        foreach ($product_shopping_filtrados as $prod) {
+        $diccionario = collect([]);
+
+        foreach ($product_shop_filt as $prod) {
             
             foreach($productos as $producto){
-
-                if($prod->get('product_id')==$producto->get('id')){
-                    $diccionario->append($producto->get('name'));           
+                
+                if($producto->id == $prod->product_id){ 
+                    $diccionario->push($producto);
                 }
             }
+            
            
         }
 
-
-
         return view("seguimientoOrden.detalle", ["orders" => $orden_filtrada],["products" => $diccionario]);
-    }
-
-    public function detalle2(Request $request)
-    {
-       
     }
 
     public function show(Order $order)
