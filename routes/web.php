@@ -53,3 +53,7 @@ Route::get('/cryptopayment/cryptocom', [PaymentController::class, 'cryptocomChec
 Route::get('/categorias/{categoria_id}', App\Http\Livewire\Categorias\Products::class)->name('categoria.show');
 
 Route::get('/preguntasFrecuentes', [App\Http\Controllers\HomeController::class,'AQ'])->name('preguntas_frecuentes');
+
+Route::get('/ordenes', [App\Http\Controllers\OrderController::class, 'index'])->name('ordenes.index');
+
+Route::get('/ordenes/{order_id}', [App\Http\Controllers\OrderController::class, 'detalle'])->name('ordenes.detalle');
