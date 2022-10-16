@@ -45,7 +45,7 @@ class PaymentController extends Controller
         Stripe::setApiKey(config('services.stripe.secret'));
 
         Charge::create([
-            'amount' => ($cart->getAmount()),
+            'amount' => ($cart->getAmount())*100,
             'currency' => 'USD',
             'source' => $request->stripeToken
         ]);
