@@ -188,5 +188,18 @@
             </center>
        </footer>
        <a href="#inicio" id="asubir"><img src="{{ asset('imgs/subir.png') }}" alt="Subir" class="btnSubir" id="btnSubir"></a>
+       <script>
+  window.watsonAssistantChatOptions = {
+    integrationID: "b1191e6e-3184-40d0-a383-9676cd777b82", // The ID of this integration.
+    region: "us-south", // The region your integration is hosted in.
+    serviceInstanceID: "f430015f-fd83-4b74-82dd-c41bf1a35e1b", // The ID of your service instance.
+    onLoad: function(instance) { instance.render(); }
+  };
+  setTimeout(function(){
+    const t=document.createElement('script');
+    t.src="https://web-chat.global.assistant.watson.appdomain.cloud/versions/" + (window.watsonAssistantChatOptions.clientVersion || 'latest') + "/WatsonAssistantChatEntry.js";
+    document.head.appendChild(t);
+  });
+</script>
 </body>
 </html>

@@ -1,0 +1,67 @@
+version: "2.11"
+
+services:
+    app:
+        image: "laratest/app:${TAG:-latest}"
+        build:
+            args:
+                user: usuario
+                uid: 1000
+            context: ./
+            dockerfile: Dockerfile
+        container_name: test-app
+        restart: unless-stopped
+        working_dir: /var/www/
+        volumes:
+            - ./:/var/www
+        networks:
+            - test-network
+
+    web:
+        image: nginx:1.19.4
+        container_name: test-nginx
+        restart: unless-stopped
+        ports:
+            - 835:80
+        volumes:
+            - ./:/var/www
+            - ./docker-compose/nginx:/etc/nginx/conf.d/
+        networks:
+            - test-network
+
+    db:
+        image: mysql:8.0
+        container_name: test-db
+        restart: unless-stopped
+        ports:
+            - ${SERVER_PORT_DB:-3306}:3306
+        volumes:
+            - dbdata:/var/lib/mysql
+        environment:
+            - MYSQL_HOST=${DB_HOST:-buaxlraj134jtuqinuvw-mysql.services.clever-cloud.com}
+            - MYSQL_DATABASE=${DB_DATABASE:-buaxlrajl34jtuqinuvw}
+            - MYSQL_USER=${DB_USERNAME:-unxaqh7qb0h1qlni}
+            - MYSQL_PASSWORD=${DB_PASSWORD:-40NHkT5198qcvmkpQrpU}
+        networks:
+            - test-network
+
+    phpmyadmin:
+        image: phpmyadmin
+        restart: always
+        ports:
+            - 864:80
+        environment:
+            - PMA_ARBITRARY=1
+            - PMA_HOST=${DB_HOST:-buaxlrajl34jtuqinuvw-mysql.services.clever-cloud.com}
+            - PMA_USER=${DB_USERNAME:-unxaqh7qb0h1qlni}
+            - PMA_PASSWORD=${DB_PASSWORD:-40NHkT5198qcvmkpQrpU}
+        networks:
+            - test-network
+
+   
+networks:
+    test-network:
+        driver: bridge
+
+volumes:
+    dbdata:
