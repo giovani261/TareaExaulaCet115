@@ -54,16 +54,16 @@ Route::get('/categorias/{categoria_id}', App\Http\Livewire\Categorias\Products::
 
 Route::get('/preguntasFrecuentes', [App\Http\Controllers\HomeController::class,'AQ'])->name('preguntas_frecuentes');
 
-Route::get('/ordenes', [App\Http\Controllers\OrderController::class, 'index'])->name('ordenes.index');
+Route::get('/ordenes', [App\Http\Controllers\OrderController::class, 'index'])->name('ordenes.index')->middleware('auth','2fa');
 
-Route::get('/archivo', [App\Http\Controllers\OrderController::class, 'archivo'])->name('ordenes.archivo');
+Route::get('/archivo', [App\Http\Controllers\OrderController::class, 'archivo'])->name('ordenes.archivo')->middleware('auth','2fa');
 
-Route::get('/archivar/{order_id}/{par?}', [App\Http\Controllers\OrderController::class, 'archivar'])->name('ordenes.archivar');
+Route::get('/archivar/{order_id}/{par?}', [App\Http\Controllers\OrderController::class, 'archivar'])->name('ordenes.archivar')->middleware('auth','2fa');
 
-Route::get('/ordenes/{order_id}', [App\Http\Controllers\OrderController::class, 'detalle'])->name('ordenes.detalle');
+Route::get('/ordenes/{order_id}', [App\Http\Controllers\OrderController::class, 'detalle'])->name('ordenes.detalle')->middleware('auth','2fa');
 
-Route::get('/ordenesAdmin', [App\Http\Controllers\OrderController::class, 'indexAdmin'])->name('ordenes.indexAdmin');
+Route::get('/ordenesAdmin', [App\Http\Controllers\OrderController::class, 'indexAdmin'])->name('ordenes.indexAdmin')->middleware('auth','2fa');
 
-Route::get('/ordenesAdmin/{order_id}', [App\Http\Controllers\OrderController::class, 'detalleAdmin'])->name('ordenes.detalleAdmin');
+Route::get('/ordenesAdmin/{order_id}', [App\Http\Controllers\OrderController::class, 'detalleAdmin'])->name('ordenes.detalleAdmin')->middleware('auth','2fa');
 
-Route::get('/ordenesAdminEstado/{order_id}/{par?}', [App\Http\Controllers\OrderController::class, 'cambiarEstado'])->name('ordenes.cambiarEstado');
+Route::get('/ordenesAdminEstado/{order_id}/{par?}', [App\Http\Controllers\OrderController::class, 'cambiarEstado'])->name('ordenes.cambiarEstado')->middleware('auth','2fa');
