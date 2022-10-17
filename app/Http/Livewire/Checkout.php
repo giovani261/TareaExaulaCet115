@@ -4,18 +4,28 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\CartManager;
+use Share;
 
 class Checkout extends Component
 {
 
     public $cart, $stripeKey;
+    private $shareButtons1;
 
     public function mount(CartManager $cart)
     {
         $this->stripeKey = config('services.stripe.key');
         $this->cart = $cart->getCart();
-    }
 
+        $this->shareButtons1 = Share::page(
+            'https://tareaexaulacet115siman.herokuapp.com/','Ha realizado una compra en siman')
+      ->facebook()
+      ->twitter()
+      ->linkedin()
+      ->telegram()
+      ->whatsapp() 
+      ->reddit();
+    }
     public function deleteProduct(CartManager $cart, $productId)
     {
         $cart->deleteProduct($productId);
@@ -32,6 +42,6 @@ class Checkout extends Component
     {
         return view('livewire.checkout', [
             'products' => $this->cart->products
-        ])->extends('layouts.app');
+        ],['shareButtons1' => $this->shareButtons1])->extends('layouts.app');
     }
 }

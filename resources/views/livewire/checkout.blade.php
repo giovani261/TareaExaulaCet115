@@ -90,6 +90,59 @@
             </div>
         </div>
     </div>
+
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="{{ asset('js/share.js') }}"></script>
+
+     <style>
+     #social-links ul{
+          padding-left: 0;
+     }
+     #social-links ul li {
+          display: inline-block;
+     } 
+     #social-links ul li a {
+          padding: 6px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          margin: 1px;
+          font-size: 25px;
+     }
+     #social-links .fa-facebook{
+           color: #0d6efd;
+     }
+     #social-links .fa-twitter{
+           color: deepskyblue;
+     }
+     #social-links .fa-linkedin{
+           color: #0e76a8;
+     }
+     #social-links .fa-whatsapp{
+          color: #25D366
+     }
+     #social-links .fa-reddit{
+          color: #FF4500;;
+     }
+     #social-links .fa-telegram{
+          color: #0088cc;
+     }
+     </style>
+
+<div class='container'>
+
+<!-- Post 1 -->
+<div class='row mt-5'>
+      <h2>Compartir en redes sociales</h2>
+
+      <!-- Social Share buttons 1 -->
+      <div class="social-btn-sp">
+            {!! $shareButtons1 !!}
+      </div> 
+ </div>
+ </div>
 </div>
 @push('scripts')
 <script src="https://js.crypto.com/sdk?publishable-key=pk_test_pQc3wFfS5sFXXoBzfGo1sbQN"></script>
